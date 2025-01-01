@@ -1,2 +1,2 @@
 # weatherstation
-Android app for getting local mqtt weaher data
+Android app for getting local mqtt weather data
