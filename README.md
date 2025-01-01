@@ -7,5 +7,5 @@ On my computer I also installed Mosquitto as an MQTT broker that my Android app 
 
 
 ## Links
-Mosquitto MQTT broker https://mosquitto.org/
-Lib for getting weather data https://github.com/merbanan/rtl_433
+- Mosquitto MQTT broker https://mosquitto.org/
+- Lib for getting weather data https://github.com/merbanan/rtl_433
