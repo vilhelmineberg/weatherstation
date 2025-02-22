@@ -26,9 +26,10 @@ import se.vilhelmineberg.weatherstation.ui.theme.WeatherstationTheme
 
 @Composable
 fun Temperature(
-    state: TemperatureState,
+    state: State,
     onAction: (TemperatureAction) -> Unit
 ) {
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -52,27 +53,31 @@ fun Temperature(
         )
 
         SunCard(
-            state.sunTimes.first,
-            state.sunTimes.second,
+            state.sunriseAndSunsetTimes.first,
+            state.sunriseAndSunsetTimes.second,
             state.sunTimeDiffPreviousWeek,
             state.sunTimeDiffFromMidWinter
         )
 
         TemperatureCard(
-            " Växthus",
-            state.temperatureGreenHouse.temperature,
-            state.temperatureGreenHouse.humidity,
-            state.temperatureGreenHouse.timestamp,
-            icon = ImageVector.vectorResource(id = R.drawable.baseline_local_florist_24)
+            "Växthus",
+            state.greenhouse.temperature,
+            state.greenhouse.humidity,
+            state.greenhouse.timestamp,
+            icon = ImageVector.vectorResource(id = R.drawable.baseline_local_florist_24),
+            state.greenhouse.dayHigh,
+            state.greenhouse.dayLow
         )
         Spacer(modifier = Modifier.height(16.dp))
 
         TemperatureCard(
             "Bryggeri",
-            state.temperatureBrewery.temperature,
-            state.temperatureBrewery.humidity,
-            state.temperatureBrewery.timestamp,
-            icon = ImageVector.vectorResource(id = R.drawable.baseline_local_drink_24)
+            state.brewery.temperature,
+            state.brewery.humidity,
+            state.brewery.timestamp,
+            icon = ImageVector.vectorResource(id = R.drawable.baseline_local_drink_24),
+            state.brewery.dayHigh,
+            state.brewery.dayLow
         )
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -92,16 +97,20 @@ fun TemperaturePreview() {
     WeatherstationTheme {
         Surface {
             Temperature(
-                state = TemperatureState(
-                    temperatureGreenHouse = TemperatureClient(
+                state = State(
+                    greenhouse = TemperatureClient(
                         temperature = "20.0",
                         humidity = "50.0",
-                        timestamp = "2023-04-01 12:00:00"
+                        timestamp = "2023-04-01 12:00:00",
+                        dayHigh = "20.0",
+                        dayLow = "20.0"
                     ),
-                    temperatureBrewery = TemperatureClient(
+                    brewery = TemperatureClient(
                         temperature = "20.0",
                         humidity = "50.0",
-                        timestamp = "2023-04-01 12:00:00"
+                        timestamp = "2023-04-01 12:00:00",
+                        dayHigh = "20.0",
+                        dayLow = "20.0"
                     ),
                     connection = ConnectionStatus.CONNECTED
                 ),

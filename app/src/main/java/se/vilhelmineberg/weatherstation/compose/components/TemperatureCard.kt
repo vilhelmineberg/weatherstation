@@ -18,7 +18,15 @@ import androidx.compose.ui.unit.dp
 import se.vilhelmineberg.weatherstation.R
 
 @Composable
-fun TemperatureCard(header: String, temperature: String, humidity: String, timestamp: String, icon: ImageVector) {
+fun TemperatureCard(
+    header: String,
+    temperature: String,
+    humidity: String,
+    timestamp: String,
+    icon: ImageVector,
+    dayHigh: String,
+    dayLow: String
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -41,6 +49,18 @@ fun TemperatureCard(header: String, temperature: String, humidity: String, times
                     Column {
                         Text(text = "Temperatur: $temperature C", modifier = Modifier.padding(start = 16.dp))
                         Text(text = "Luftfuktighet: $humidity %", modifier = Modifier.padding(start = 16.dp))
+
+                        Row {
+                            Text(
+                                text = "Min: $dayLow C",
+                                modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
+                            )
+                            Text(
+                                text = "Max: $dayHigh C",
+                                modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
+                            )
+                        }
+
                         Text(text = "Uppdaterad: $timestamp", modifier = Modifier.padding(start = 16.dp, bottom = 8.dp))
                     }
                 }
@@ -48,6 +68,7 @@ fun TemperatureCard(header: String, temperature: String, humidity: String, times
         }
     }
 }
+
 
 @Composable
 @Preview(showBackground = true)
@@ -57,6 +78,8 @@ fun TemperatureCardPreview() {
         temperature = "3.0",
         humidity = "50.0",
         timestamp = "2023-04-01 12:00:00",
-        icon = ImageVector.vectorResource(id = R.drawable.baseline_local_drink_24)
+        icon = ImageVector.vectorResource(id = R.drawable.baseline_local_drink_24),
+        dayHigh = "4.0",
+        dayLow = "2.0"
     )
 }
